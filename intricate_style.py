@@ -459,7 +459,7 @@ for i in range(num_iter):
     print("Starting iteration %d of %d" % ((i + 1), num_iter))
     start_time = time.time()
 
-    x, min_val, info = fmin_1_bfgs_b(evaluator.loss, x.flatten() fprime=evaluator.grads, maxfun=20)
+    x, min_val, info = fmin_1_bfgs_b(evaluator.loss, x.flatten(), fprime=evaluator.grads, maxfun=20)
 
     if prev_min_val == -1:
         prev_min_val = min_val
@@ -490,8 +490,8 @@ for i in range(num_iter):
         print("Image saved as ", fname)
         print("Iteration %d completed in %ds" % (i + 1, end_time - start_time))
 
-    if improvement_threshold is not 0.0:
-        if improvement < improvement_threshold and improvement is not 0.0:
+    if improvement_threshold != 0.0:
+        if improvement < improvement_threshold and improvement != 0.0:
             print("Improvement (%f) is less than improvement threshold (%f). Early stopping script." %
                   (improvement, improvement_threshold))
             exit()
